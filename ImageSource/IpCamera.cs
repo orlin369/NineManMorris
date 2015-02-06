@@ -31,8 +31,8 @@ namespace ImageSource
         /// <returns>The bitmap image.</returns>
         public Bitmap Capture()
         {
-            var request = WebRequest.Create(this.uri.AbsoluteUri);
-            var response = request.GetResponse();
+            WebRequest request = WebRequest.Create(this.uri.AbsoluteUri);
+            WebResponse response = request.GetResponse();
             Stream stream = response.GetResponseStream();
             return new Bitmap(stream);
         }
