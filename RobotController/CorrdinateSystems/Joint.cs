@@ -103,5 +103,28 @@ namespace Robot.CorrdinateSystems
         {
             return String.Format("Base: {0}; Shoulder: {1}; Elbow: {2}; Pich: {3}; Roll: {4}", this.Base, this.Shoulder, this.Elbow, this.Wrist, this.Gripper);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static Joint operator -(Joint a, Joint b)
+        {
+            return new Joint(a.Base - b.Base, a.Shoulder - b.Shoulder, a.Elbow - b.Elbow, a.Wrist - b.Wrist, a.Gripper - b.Gripper);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static Joint operator +(Joint a, Joint b)
+        {
+            return new Joint(a.Base + b.Base, a.Shoulder + b.Shoulder, a.Elbow + b.Elbow, a.Wrist + b.Wrist, a.Gripper + b.Gripper);
+        }
+
     }
 }

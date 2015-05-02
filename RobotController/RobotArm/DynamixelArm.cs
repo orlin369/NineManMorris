@@ -234,7 +234,8 @@ namespace Robot.RobotArm
         /// </summary>
         public void GoToHome()
         {
-            this.SetJPosition(new Joint(0.0d, 0.0d, 0.0d, 0.0d, 0.0d));
+            //this.SetJPosition(new Joint(0.0d, 0.0d, 0.0d, 0.0d, 0.0d));
+            this.LJInterpolation(new Joint(0.0d, 0.0d, 0.0d, 0.0d, 0.0d), 20);
         }
 
         /// <summary>
@@ -265,7 +266,9 @@ namespace Robot.RobotArm
         {
             // Current robot pos.
             Joint currentPosition = this.GetJPosition();
-            
+
+            position -= currentPosition;
+
             // Delta steps for each joint.
             double deltaBase = position.Base / step;
             double deltaShoulder = position.Shoulder / step;
@@ -281,14 +284,14 @@ namespace Robot.RobotArm
             for (double i = 0; i < step; i++)
             {
                 curBase += deltaBase;
-                curShouler -= deltaShoulder;
+                curShouler += deltaShoulder;
                 curElbow += deltaElbow;
                 curWrist += deltaWrist;
 
                 Joint newPos = new Joint(curBase, curShouler, curElbow, curWrist, currentPosition.Gripper);
 
                 this.SetJPosition(newPos);
-                Console.WriteLine("{0}", newPos.ToString());
+                //Console.WriteLine("{0}", newPos.ToString());
                 System.Threading.Thread.Sleep(delay);
             }
         }

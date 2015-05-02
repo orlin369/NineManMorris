@@ -243,35 +243,36 @@ namespace DiO_CS_NineMansMorris
         /// <param name="arm"></param>
         private void TestProgram(DynamixelArm arm)
         {
-            /*
-            //Steve Stavrev
-            arm.SetJPosition(new JointConfiguration(15.0d, 0.0d, 0.0d, 0.0d, 0.0d));
-            System.Threading.Thread.Sleep(1000);
-            arm.SetJPosition(new JointConfiguration(15.0d, 0.0d, 0.0d, 0.0d, 0.0d));
-            System.Threading.Thread.Sleep(1000);
-
-            arm.SetJPosition(new JointConfiguration(0.0d, 0.0d, 0.0d, 0.0d, 90.0d));
-            System.Threading.Thread.Sleep(1000);
-
-            arm.SetJPosition(new JointConfiguration(0.0d, 30.0d, 0.0d, 0.0d, 0.0d));
-            System.Threading.Thread.Sleep(1000);
-            arm.SetJPosition(new JointConfiguration(0.0d, 30.0d, 0.0d, 0.0d, 0.0d));
-            System.Threading.Thread.Sleep(1000);
-
-            arm.SetJPosition(new JointConfiguration(0.0d, 0.0d, 0.0d, 0.0d, 0.0d));
-            System.Threading.Thread.Sleep(1000);
-
-
-            arm.SetJPosition(new JointConfiguration(0.0d, 0.0d, 35.0d, 0.0d, 0.0d));
-            System.Threading.Thread.Sleep(1000);
-            arm.SetJPosition(new JointConfiguration(0.0d, 0.0d, 35.0d, 0.0d, 0.0d));
-            System.Threading.Thread.Sleep(1000);
             
-            arm.SetJPosition(new JointConfiguration(0.0d, 0.0d, 0.0d, 20.0d, 0.0d));
+            //Steve Stavrev
+            /*
+            arm.LJInterpolation(new Joint(15.0d, 0.0d, 0.0d, 0.0d, 0.0d), 20);
             System.Threading.Thread.Sleep(1000);
-            arm.SetJPosition(new JointConfiguration(0.0d, 0.0d, 0.0d, 10.0d, 0.0d));
+            arm.LJInterpolation(new Joint(15.0d, 0.0d, 0.0d, 0.0d, 0.0d), 20);
             System.Threading.Thread.Sleep(1000);
-             */
+
+            arm.LJInterpolation(new Joint(0.0d, 0.0d, 0.0d, 0.0d, 90.0d), 20);
+            System.Threading.Thread.Sleep(1000);
+
+            arm.LJInterpolation(new Joint(0.0d, 30.0d, 0.0d, 0.0d, 0.0d), 20);
+            System.Threading.Thread.Sleep(1000);
+            arm.LJInterpolation(new Joint(0.0d, 30.0d, 0.0d, 0.0d, 0.0d), 20);
+            System.Threading.Thread.Sleep(1000);
+
+            arm.LJInterpolation(new Joint(0.0d, 0.0d, 0.0d, 0.0d, 0.0d), 20);
+            System.Threading.Thread.Sleep(1000);
+
+
+            arm.LJInterpolation(new Joint(0.0d, 0.0d, 35.0d, 0.0d, 0.0d), 20);
+            System.Threading.Thread.Sleep(1000);
+            arm.LJInterpolation(new Joint(0.0d, 0.0d, 35.0d, 0.0d, 0.0d), 20);
+            System.Threading.Thread.Sleep(1000);
+
+            arm.LJInterpolation(new Joint(0.0d, 0.0d, 0.0d, 20.0d, 0.0d), 20);
+            System.Threading.Thread.Sleep(1000);
+            arm.LJInterpolation(new Joint(0.0d, 0.0d, 0.0d, 10.0d, 0.0d), 20);
+            System.Threading.Thread.Sleep(1000);
+            */
 
             /*
             //Dzhuvi Juniour
@@ -344,7 +345,8 @@ namespace DiO_CS_NineMansMorris
                 System.Threading.Thread.Sleep(1);
             }
             */
-
+            /*
+             * //Krasimir ...
             arm.SetJPosition(new Joint(0, 0, 0, 0, 120));
             for (int i = 0; i < 36; i++)
             {
@@ -367,9 +369,26 @@ namespace DiO_CS_NineMansMorris
             }
             arm.SetJPosition(new Joint(55, 20, 0, 27, 120));
             System.Threading.Thread.Sleep(1000);
+            */
+
+            // Linda Massarwe ...
+            /*
+            //arm.LJInterpolation(new Joint(0, 0, 0, 5, 0), 20.0d);
+            arm.LJInterpolation(new Joint(62.0d, -27.0d, 5, 15, 0.0d), 20.0d);
+            System.Threading.Thread.Sleep(2000);
+
+            arm.LJInterpolation(new Joint(50, 23, 0, 0, 0), 20.0d);
+            System.Threading.Thread.Sleep(3000);
+
+            arm.LJInterpolation(new Joint(0.0d, 0.0d, 0.0d, 0.0d, 0.0d), 20);
+            */
+
+            // Angel Dimov
+            arm.LJInterpolation(new Joint(35.0d, 0.0d, 0.0d, 0.0d, 75.0d), 20);
+            System.Threading.Thread.Sleep(3000);
 
 
-            arm.GoToHome();
+            //arm.GoToHome();
             Decart pos = arm.GetDPosition();
             Console.WriteLine("XYZPR: {0}", pos.ToString());
         }
@@ -683,28 +702,28 @@ namespace DiO_CS_NineMansMorris
 
             try
             {
-                /*
+                
                 using (DynamixelController myDynamixel = new DynamixelController(comIndex, 1))
                 {
                     DynamixelArm myArm = new DynamixelArm(myDynamixel, this.jointIDs);
                     myArm.ComState += new EventHandler<StateEvent>(myRobot_RobotComState);
                     myArm.ServoState += new EventHandler<ErrorEvent>(myRobot_RobotServoState);
-                    
+                    /*
                     for (int iterator = 0; iterator < 10; iterator++)
                     {
                         myArm.LJInterpolation(new Joint(20.0d, -20.0d, 20.0d, 20.0d, 0.0d), 20.0d);
                         myArm.LJInterpolation(new Joint(-40.0d, 40.0d, -40.0d, -40.0d, 0.0d), 40.0d);
                         myArm.LJInterpolation(new Joint(20.0d, -20.0d, 20.0d, 20.0d, 0.0d), 20.0d);
                     }
-                    
+                    */
                     myArm.GoToHome();
 
                     myArm.ComState -= new EventHandler<StateEvent>(myRobot_RobotComState);
                     myArm.ServoState -= new EventHandler<ErrorEvent>(myRobot_RobotServoState);
 
-                    //this.TestProgram(myArm);
+                    this.TestProgram(myArm);
                 }
-              */
+              
                 Joint homeJ = new Joint(0.0d, 0.0d, 0.0d, 0.0d, 0.0d);
                 Robot.Experimantal.ArmConfiguration myConfig = new Robot.Experimantal.ArmConfiguration(47, 47, 142, 110);
                 Robot.Experimantal.ArmKinematics myKinematics = new Robot.Experimantal.ArmKinematics(myConfig);
@@ -736,6 +755,7 @@ namespace DiO_CS_NineMansMorris
                 using (DynamixelController myDynamixel = new DynamixelController(comIndex, 1))
                 {
                     DynamixelArm myArm = new DynamixelArm(myDynamixel, this.jointIDs);
+                    //System.Threading.Thread.Sleep(2000);
                     myArm.GoToHome();
                     Decart pos = myArm.GetDPosition();
                     Console.WriteLine("XYZPR: {0}", pos.ToString());
@@ -800,6 +820,89 @@ namespace DiO_CS_NineMansMorris
 
         #endregion
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
         #endregion
+
+        //Angel Dimov
+        private void button1_Click(object sender, EventArgs e)
+        {
+            double baseJoint = double.Parse(this.txtBase.Text);
+            double shoulderJoint = double.Parse(this.txtShoulder.Text);
+            double elbowJoint = double.Parse(this.txtElbow.Text);
+            double wristJoint = double.Parse(this.txtWrist.Text);
+            double gripperJoint = double.Parse(this.txtGripper.Text);
+
+            if (!this.enableSending)
+            {
+                return;
+            }
+
+            int comIndex = Convert.ToInt32(this.robotSerialPortName.Replace("COM", ""));
+            try
+            {
+                using (DynamixelController myDynamixel = new DynamixelController(comIndex, 1))
+                {
+                    DynamixelArm myArm = new DynamixelArm(myDynamixel, this.jointIDs);
+
+                    //baseJoint -= tempBase;
+                    //shoulderJoint -= tempShoulder;
+                    //elbowJoint -= tempShoulder;
+                    //wristJoint -= tempWrist;
+                    //gripperJoint -= tempGripper;
+
+                    myArm.LJInterpolation(new Joint(baseJoint, shoulderJoint, elbowJoint, wristJoint, gripperJoint), 20);
+
+                    Decart pos = myArm.GetDPosition();
+                    Console.WriteLine("XYZPR: {0}", pos.ToString());
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("Robot: {0}", exception.Message);
+            }
+
+        }
+
+        private void trackBar1_OnChange(object sender, EventArgs e)
+        {
+            double baseJoint = this.trackBar1.Value;
+            double shoulderJoint = this.trackBar2.Value;
+            double elbowJoint = this.trackBar3.Value;
+            double wristJoint = this.trackBar4.Value;
+            double gripperJoint = this.trackBar5.Value;
+
+            if (!this.enableSending)
+            {
+                return;
+            }
+
+            int comIndex = Convert.ToInt32(this.robotSerialPortName.Replace("COM", ""));
+            try
+            {
+                using (DynamixelController myDynamixel = new DynamixelController(comIndex, 1))
+                {
+                    DynamixelArm myArm = new DynamixelArm(myDynamixel, this.jointIDs);
+
+                    //baseJoint -= tempBase;
+                    //shoulderJoint -= tempShoulder;
+                    //elbowJoint -= tempShoulder;
+                    //wristJoint -= tempWrist;
+                    //gripperJoint -= tempGripper;
+
+                    myArm.LJInterpolation(new Joint(baseJoint, shoulderJoint, elbowJoint, wristJoint, gripperJoint), 20);
+
+                    Decart pos = myArm.GetDPosition();
+                    Console.WriteLine("XYZPR: {0}", pos.ToString());
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("Robot: {0}", exception.Message);
+            }
+        }
     }
 }
