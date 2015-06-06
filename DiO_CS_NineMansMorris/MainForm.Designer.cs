@@ -59,7 +59,7 @@
             this.txtElbow = new System.Windows.Forms.TextBox();
             this.txtWrist = new System.Windows.Forms.TextBox();
             this.txtGripper = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSetPosition = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -396,15 +396,15 @@
             this.txtGripper.TabIndex = 25;
             this.txtGripper.Text = "0";
             // 
-            // button1
+            // btnSetPosition
             // 
-            this.button1.Location = new System.Drawing.Point(1160, 450);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 27);
-            this.button1.TabIndex = 26;
-            this.button1.Text = "Manual";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSetPosition.Location = new System.Drawing.Point(1160, 450);
+            this.btnSetPosition.Name = "btnSetPosition";
+            this.btnSetPosition.Size = new System.Drawing.Size(76, 27);
+            this.btnSetPosition.TabIndex = 26;
+            this.btnSetPosition.Text = "Manual";
+            this.btnSetPosition.UseVisualStyleBackColor = true;
+            this.btnSetPosition.Click += new System.EventHandler(this.btnSetPosition_Click);
             // 
             // label1
             // 
@@ -485,7 +485,7 @@
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(104, 45);
             this.trackBar1.TabIndex = 34;
-            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_OnChange);
+            this.trackBar1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trbUpdatePosition_MouseUp);
             // 
             // trackBar2
             // 
@@ -495,7 +495,7 @@
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(104, 45);
             this.trackBar2.TabIndex = 35;
-            this.trackBar2.ValueChanged += new System.EventHandler(this.trackBar1_OnChange);
+            this.trackBar2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trbUpdatePosition_MouseUp);
             // 
             // trackBar3
             // 
@@ -505,7 +505,7 @@
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Size = new System.Drawing.Size(104, 45);
             this.trackBar3.TabIndex = 36;
-            this.trackBar3.ValueChanged += new System.EventHandler(this.trackBar1_OnChange);
+            this.trackBar3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trbUpdatePosition_MouseUp);
             // 
             // trackBar4
             // 
@@ -515,7 +515,7 @@
             this.trackBar4.Name = "trackBar4";
             this.trackBar4.Size = new System.Drawing.Size(104, 45);
             this.trackBar4.TabIndex = 37;
-            this.trackBar4.ValueChanged += new System.EventHandler(this.trackBar1_OnChange);
+            this.trackBar4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trbUpdatePosition_MouseUp);
             // 
             // trackBar5
             // 
@@ -525,7 +525,7 @@
             this.trackBar5.Name = "trackBar5";
             this.trackBar5.Size = new System.Drawing.Size(104, 45);
             this.trackBar5.TabIndex = 38;
-            this.trackBar5.ValueChanged += new System.EventHandler(this.trackBar1_OnChange);
+            this.trackBar5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trbUpdatePosition_MouseUp);
             // 
             // label8
             // 
@@ -688,7 +688,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnSetPosition);
             this.Controls.Add(this.txtGripper);
             this.Controls.Add(this.txtWrist);
             this.Controls.Add(this.txtElbow);
@@ -757,7 +757,7 @@
         private System.Windows.Forms.TextBox txtElbow;
         private System.Windows.Forms.TextBox txtWrist;
         private System.Windows.Forms.TextBox txtGripper;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSetPosition;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

@@ -828,13 +828,19 @@ namespace DiO_CS_NineMansMorris
         #endregion
 
         //Angel Dimov
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSetPosition_Click(object sender, EventArgs e)
         {
             double baseJoint = double.Parse(this.txtBase.Text);
             double shoulderJoint = double.Parse(this.txtShoulder.Text);
             double elbowJoint = double.Parse(this.txtElbow.Text);
             double wristJoint = double.Parse(this.txtWrist.Text);
             double gripperJoint = double.Parse(this.txtGripper.Text);
+
+            this.trackBar1.Value = (int)baseJoint;
+            this.trackBar2.Value = (int)shoulderJoint;
+            this.trackBar3.Value = (int)elbowJoint;
+            this.trackBar4.Value = (int)wristJoint;
+            this.trackBar5.Value = (int)gripperJoint;
 
             if (!this.enableSending)
             {
@@ -867,7 +873,7 @@ namespace DiO_CS_NineMansMorris
 
         }
 
-        private void trackBar1_OnChange(object sender, EventArgs e)
+        private void trbUpdatePosition_MouseUp(object sender, MouseEventArgs e)
         {
             double baseJoint = this.trackBar1.Value;
             double shoulderJoint = this.trackBar2.Value;
