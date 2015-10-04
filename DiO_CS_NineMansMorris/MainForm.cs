@@ -43,11 +43,11 @@ namespace DiO_CS_NineMansMorris
         /// </summary>
         private string ipCameraAddress = "http://192.168.1.1/cgi-bin/image.jpg";
 
-        private string ipMobileCamera = "http://192.168.0.104:8080/photoaf.jpg";
 
 
         //src net 192.168.0.0 mask 255.255.255.0
         //http.request.full_uri
+        private string ipMobileCamera = "http://192.168.0.104:8080/photoaf.jpg";
         //http://192.168.0.104:8080/enabletorch
         //http://192.168.0.104:8080/disabletorch
 
@@ -819,11 +819,6 @@ namespace DiO_CS_NineMansMorris
         }
 
         #endregion
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         #endregion
 
