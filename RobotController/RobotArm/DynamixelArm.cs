@@ -120,7 +120,7 @@ namespace Robot.RobotArm
             this.jointIDs = jointIDs;
             this.controller = controller;
 
-            List<Servo> servos = this.controller.FindServos(jointIDs.ToArray().Min(), jointIDs.ToArray().Max());
+            List<Servo> servos = this.controller.FindServos((byte)jointIDs.ToArray().Min(), (byte)jointIDs.ToArray().Max());
 
             this.baseServo = servos.Where(x => x.ID == this.jointIDs.Base).First();
             this.shoulderServo = servos.Where(x => x.ID == this.jointIDs.Shoulder).First();

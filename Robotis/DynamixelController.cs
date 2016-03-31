@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Runtime.InteropServices;
 
 namespace Robotis
@@ -171,11 +172,24 @@ namespace Robotis
             this.comIndex = comIndex;
             this.boudrate = boudrate;
 
+            string[] porNames = SerialPort.GetPortNames();
+            List<int> indexes = new List<int>();
+            foreach (string name in porNames)
+            {
+                string n = name.Replace("COM", "");
+                indexes.Add(int.Parse(n));
+            }
+
+            if (!indexes.Contains(comIndex))
+            {
+                throw new ArgumentException("Invalid port index.");
+            }
+
             int status = dxl_initialize(this.comIndex, this.boudrate);
 
             if (status == 0)
             {
-                throw new InvalidOperationException("Failed to open USB2Dynamixel!");
+                throw new InvalidOperationException("Failed to open USB2Dynamixel! Status: " + status.ToString());
             }
         }
 
@@ -271,7 +285,7 @@ namespace Robotis
         {
             List<Servo> listOfServo = new List<Servo>();
 
-            for (int index = 0; index < BROADCAST_ID; index++)
+            for (byte index = 0; index < BROADCAST_ID; index++)
             {
                 if (this.Ping(index))
                 {
@@ -286,11 +300,11 @@ namespace Robotis
         /// Find all servos in the network.
         /// </summary>
         /// <returns>Dictionary of servos in the network.</returns>
-        public List<Servo> FindServos(int beginAddress = 0, int endAddress = BROADCAST_ID)
+        public List<Servo> FindServos(byte beginAddress = 0, byte endAddress = BROADCAST_ID)
         {
             List<Servo> listOfServo = new List<Servo>();
 
-            for (int index = beginAddress; index <= endAddress; index++)
+            for (byte index = beginAddress; index <= endAddress; index++)
             {
                 if (this.Ping(index))
                 {

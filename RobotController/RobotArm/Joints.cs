@@ -7,13 +7,13 @@ namespace Robot.RobotArm
 {
     public class Joints
     {
-        public int Base { get; private set; }
-        public int Shoulder { get; private set; }
-        public int Elbow { get; private set; }
-        public int Wrist { get; private set; }
-        public int Gripper { get; private set; }
+        public byte Base { get; private set; }
+        public byte Shoulder { get; private set; }
+        public byte Elbow { get; private set; }
+        public byte Wrist { get; private set; }
+        public byte Gripper { get; private set; }
 
-        public Joints(int baseID, int shoulderID, int elbowID, int wristID, int gripperID)
+        public Joints(byte baseID, byte shoulderID, byte elbowID, byte wristID, byte gripperID)
         {
             this.Base = baseID;
             this.Shoulder = shoulderID;
@@ -26,9 +26,9 @@ namespace Robot.RobotArm
         /// Convert the ID to array.
         /// </summary>
         /// <returns></returns>
-        public int[] ToArray()
+        public byte[] ToArray()
         {
-            return new int[] { this.Base, this.Shoulder, this.Elbow, this.Wrist, this.Gripper };
+            return new byte[] { this.Base, this.Shoulder, this.Elbow, this.Wrist, this.Gripper };
         }
     }
 }
