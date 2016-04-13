@@ -48,25 +48,15 @@ namespace Robotis
 
         #region DLL Imports
 
-        #region Init / Terminate
-
-        /// <summary>
-        /// Initialise the comunication.
-        /// </summary>
-        /// <param name="comIndex">Serial port name.</param>
-        /// <param name="baudnum">Serial boudrate.</param>
-        /// <returns>Serial port state.</returns>
         [DllImport(DYNAMIXEL_DLL)]
-        public static extern int dxl_initialize(int comIndex, int baudnum);
-
-        /// <summary>
-        /// Terminate the comunication
-        /// </summary>
+        public static extern int dxl_initialize(int port_num, int baud_rate);
         [DllImport(DYNAMIXEL_DLL)]
-        public static extern void dxl_terminate();
+        public static extern int dxl_change_baudrate(int baud_rate);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern int dxl_terminate();
 
-        #endregion
-
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern int dxl_get_comm_result();
         /// <summary>
         /// Get the result after the request.
         /// </summary>
@@ -74,89 +64,104 @@ namespace Robotis
         [DllImport(DYNAMIXEL_DLL)]
         public static extern int dxl_get_result();
 
-        #region Package
-
-        /// <summary>
-        /// Transmit the request.
-        /// </summary>
         [DllImport(DYNAMIXEL_DLL)]
         public static extern void dxl_tx_packet();
-
-        /// <summary>
-        /// Recept the responce.
-        /// </summary>
         [DllImport(DYNAMIXEL_DLL)]
         public static extern void dxl_rx_packet();
-
-        #endregion
-
-        /// <summary>
-        /// 
-        /// </summary>
         [DllImport(DYNAMIXEL_DLL)]
         public static extern void dxl_txrx_packet();
 
         [DllImport(DYNAMIXEL_DLL)]
         public static extern void dxl_set_txpacket_id(int id);
-
         [DllImport(DYNAMIXEL_DLL)]
         public static extern void dxl_set_txpacket_instruction(int instruction);
-
-
-        #region Package lenght
-
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern void dxl_set_txpacket_parameter(int index, int value);
         [DllImport(DYNAMIXEL_DLL)]
         public static extern void dxl_set_txpacket_length(int length);
-
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern int dxl_get_rxpacket_error(int error);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern int dxl_get_rxpacket_error_byte();
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern int dxl_get_rxpacket_parameter(int index);
         [DllImport(DYNAMIXEL_DLL)]
         public static extern int dxl_get_rxpacket_length();
 
-        #endregion
-
-        [DllImport(DYNAMIXEL_DLL)]
-        public static extern int dxl_get_rxpacket_error(int errbit);
-
-        #region Package parameter
-
-        [DllImport(DYNAMIXEL_DLL)]
-        public static extern int dxl_get_rxpacket_parameter(int index);
-
-        [DllImport(DYNAMIXEL_DLL)]
-        public static extern void dxl_set_txpacket_parameter(int index, int value);
-
-        #endregion
-
-        [DllImport(DYNAMIXEL_DLL)]
-        public static extern int dxl_makeword(int lowbyte, int highbyte);
-
-        [DllImport(DYNAMIXEL_DLL)]
-        public static extern int dxl_get_lowbyte(int word);
-
-        [DllImport(DYNAMIXEL_DLL)]
-        public static extern int dxl_get_highbyte(int word);
-
         [DllImport(DYNAMIXEL_DLL)]
         public static extern void dxl_ping(int id);
-
-        #region RW Byte
-
         [DllImport(DYNAMIXEL_DLL)]
         public static extern int dxl_read_byte(int id, int address);
-
         [DllImport(DYNAMIXEL_DLL)]
         public static extern void dxl_write_byte(int id, int address, int value);
-
-        #endregion
-
-        #region RW Word
-
         [DllImport(DYNAMIXEL_DLL)]
         public static extern int dxl_read_word(int id, int address);
-
         [DllImport(DYNAMIXEL_DLL)]
         public static extern void dxl_write_word(int id, int address, int value);
 
-        #endregion
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern void dxl2_tx_packet();
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern void dxl2_rx_packet();
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern void dxl2_txrx_packet();
+
+
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern void dxl2_set_txpacket_id(byte id);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern void dxl2_set_txpacket_instruction(byte instruction);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern void dxl2_set_txpacket_parameter(UInt16 index, byte value);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern void dxl2_set_txpacket_length(UInt16 length);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern int dxl2_get_rxpacket_error_byte();
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern int dxl2_get_rxpacket_parameter(int index);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern int dxl2_get_rxpacket_length();
+
+
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern void dxl2_ping(byte id);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern int dxl2_get_ping_result(byte id, int info_num);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern void dxl2_broadcast_ping();
+
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern void dxl2_reboot(byte id);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern void dxl2_factory_reset(byte id, int option);
+
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern byte dxl2_read_byte(byte id, int address);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern void dxl2_write_byte(byte id, int address, byte value);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern UInt16 dxl2_read_word(byte id, int address);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern void dxl2_write_word(byte id, int address, UInt16 value);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern UInt32 dxl2_read_dword(byte id, int address);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern void dxl2_write_dword(byte id, int address, UInt32 value);
+
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern byte dxl2_get_bulk_read_data_byte(byte id, UInt32 start_address);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern UInt16 dxl2_get_bulk_read_data_word(byte id, UInt32 start_address);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern UInt32 dxl2_get_bulk_read_data_dword(byte id, UInt32 start_address);
+
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern byte dxl2_get_sync_read_data_byte(byte id, UInt32 start_address);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern UInt16 dxl2_get_sync_read_data_word(byte id, UInt32 start_address);
+        [DllImport(DYNAMIXEL_DLL)]
+        public static extern UInt32 dxl2_get_sync_read_data_dword(byte id, UInt32 start_address);
+
 
         #endregion
 
